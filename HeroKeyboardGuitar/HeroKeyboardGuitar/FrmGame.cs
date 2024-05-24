@@ -82,7 +82,9 @@ internal partial class FrmGame : Form
             {
                 if (note.CheckMiss(picTargets[note.fretNum]))
                 {
-                    score.Miss();
+                    //score.Miss();
+                    if (score.Miss() == true)
+                        this.Close();
                 }
             }
         }
@@ -172,6 +174,11 @@ internal partial class FrmGame : Form
     //{
     //    SoundPlayer
     //}
+
+    public void CloseFrm()
+    {
+        this.Close();
+    }
 
 
     private void panel1_Paint(object sender, PaintEventArgs e)

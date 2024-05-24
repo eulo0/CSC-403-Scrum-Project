@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace HeroKeyboardGuitar;
 
@@ -15,6 +16,8 @@ public class Score {
     /// Current streak, i.e. consecutive hit notes without a miss
     /// </summary>
     public int Streak { get; private set; }
+
+    public int misses = 0;
 
     /// <summary>
     /// initializes both amount and streak to 0
@@ -42,23 +45,38 @@ public class Score {
         Streak++;
     }
 
+    public void Close()
+    {
+
+    }
+
     /// <summary>
     /// Resets streak back to 0
     /// </summary>
-    public int misses = 0;
-    public void Miss()
+    //public int misses = 0;
+    public bool Miss()
     {
         misses += 1;
-        CheckFailure(misses);
         Streak = 0;
+        if (CheckFailure(misses) == true)
+        {
+            return true;
+        }
+        return false;
     }
 
-    public void CheckFailure(int someint)
+
+    //FrmGame frmMain = new();
+    public static bool CheckFailure(int someint)
     {
         if (someint == 5)
         {
+            //FrmGame frmMain = new FrmGame();
+            //frmMain.Close();
             FailScreen failScreen = new FailScreen();
             failScreen.Show();
+            return true;
         }
+        return false;
     }
 }
