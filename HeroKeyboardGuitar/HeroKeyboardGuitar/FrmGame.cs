@@ -38,6 +38,7 @@ internal partial class FrmGame : Form
         score = new();
         notes = new();
         lblScore.Text = score.Amount.ToString();
+        label1.Text = score.misses.ToString();
         panBg.BackgroundImage = Game.GetInstance().GetBg();
         panBg.Height = (int)(Height * 0.8);
         curSong = Game.GetInstance().CurSong;
@@ -78,13 +79,14 @@ internal partial class FrmGame : Form
             {
                 note.setPic(createMarkerPic(note.fretNum));
             }
-            else 
+            else
             {
                 if (note.CheckMiss(picTargets[note.fretNum]))
                 {
                     //score.Miss();
                     if (score.Miss() == true)
                         this.Close();
+                    label1.Text = score.misses.ToString();
                 }
             }
         }
@@ -164,7 +166,7 @@ internal partial class FrmGame : Form
     {
         WinScreen winScreen = new WinScreen();
         winScreen.Show();
-        
+
     }
 
     //public SoundPlayer player;
@@ -192,6 +194,21 @@ internal partial class FrmGame : Form
     }
 
     private void panBg_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void textBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void lblScore_Click(object sender, EventArgs e)
     {
 
     }

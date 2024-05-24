@@ -25,6 +25,7 @@ public class Score {
     public Score() {
         Amount = 0;
         Streak = 0;
+        misses = 0;
     }
 
     /// <summary>
@@ -45,10 +46,6 @@ public class Score {
         Streak++;
     }
 
-    public void Close()
-    {
-
-    }
 
     /// <summary>
     /// Resets streak back to 0

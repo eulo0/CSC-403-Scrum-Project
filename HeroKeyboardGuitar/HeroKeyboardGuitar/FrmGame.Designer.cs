@@ -1,4 +1,6 @@
-﻿namespace HeroKeyboardGuitar {
+﻿using System.Windows.Forms;
+
+namespace HeroKeyboardGuitar {
     partial class FrmGame {
         /// <summary>
         ///  Required designer variable.
@@ -25,14 +27,15 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            tmrPlay = new System.Windows.Forms.Timer(components);
-            tmrScoreShrink = new System.Windows.Forms.Timer(components);
-            fret2 = new System.Windows.Forms.PictureBox();
-            fret1 = new System.Windows.Forms.PictureBox();
-            fret3 = new System.Windows.Forms.PictureBox();
-            fret0 = new System.Windows.Forms.PictureBox();
-            panBg = new System.Windows.Forms.Panel();
-            lblScore = new System.Windows.Forms.Label();
+            tmrPlay = new Timer(components);
+            tmrScoreShrink = new Timer(components);
+            fret2 = new PictureBox();
+            fret1 = new PictureBox();
+            fret3 = new PictureBox();
+            fret0 = new PictureBox();
+            panBg = new Panel();
+            label1 = new Label();
+            lblScore = new Label();
             ((System.ComponentModel.ISupportInitialize)fret2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fret1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fret3).BeginInit();
@@ -52,9 +55,9 @@
             // 
             // fret2
             // 
-            fret2.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            fret2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             fret2.BackgroundImage = Properties.Resources._default;
-            fret2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            fret2.BackgroundImageLayout = ImageLayout.Stretch;
             fret2.Location = new System.Drawing.Point(204, 129);
             fret2.Name = "fret2";
             fret2.Size = new System.Drawing.Size(120, 120);
@@ -63,9 +66,9 @@
             // 
             // fret1
             // 
-            fret1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            fret1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             fret1.BackgroundImage = Properties.Resources._default;
-            fret1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            fret1.BackgroundImageLayout = ImageLayout.Stretch;
             fret1.Location = new System.Drawing.Point(204, 292);
             fret1.Name = "fret1";
             fret1.Size = new System.Drawing.Size(120, 120);
@@ -74,9 +77,9 @@
             // 
             // fret3
             // 
-            fret3.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            fret3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             fret3.BackgroundImage = Properties.Resources._default;
-            fret3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            fret3.BackgroundImageLayout = ImageLayout.Stretch;
             fret3.Location = new System.Drawing.Point(204, 0);
             fret3.Name = "fret3";
             fret3.Size = new System.Drawing.Size(120, 120);
@@ -86,9 +89,9 @@
             // 
             // fret0
             // 
-            fret0.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            fret0.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             fret0.BackgroundImage = Properties.Resources._default;
-            fret0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            fret0.BackgroundImageLayout = ImageLayout.Stretch;
             fret0.Location = new System.Drawing.Point(204, 512);
             fret0.Name = "fret0";
             fret0.Size = new System.Drawing.Size(120, 120);
@@ -97,22 +100,36 @@
             // 
             // panBg
             // 
-            panBg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            panBg.BackgroundImageLayout = ImageLayout.Stretch;
             panBg.Controls.Add(fret3);
             panBg.Controls.Add(lblScore);
             panBg.Controls.Add(fret1);
             panBg.Controls.Add(fret2);
-            panBg.Dock = System.Windows.Forms.DockStyle.Top;
+            panBg.Dock = DockStyle.Top;
             panBg.Location = new System.Drawing.Point(0, 0);
             panBg.Name = "panBg";
             panBg.Size = new System.Drawing.Size(1237, 480);
             panBg.TabIndex = 6;
             panBg.Paint += panBg_Paint;
             // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label1.BackColor = System.Drawing.Color.Transparent;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(555, 483);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(129, 89);
+            label1.TabIndex = 9;
+            label1.Text = "0";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label1.Click += label1_Click;
+            // 
             // lblScore
             // 
             lblScore.BackColor = System.Drawing.Color.Transparent;
-            lblScore.Dock = System.Windows.Forms.DockStyle.Bottom;
+            lblScore.Dock = DockStyle.Bottom;
             lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             lblScore.ForeColor = System.Drawing.Color.White;
             lblScore.Location = new System.Drawing.Point(0, 391);
@@ -121,20 +138,22 @@
             lblScore.TabIndex = 5;
             lblScore.Text = "0";
             lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblScore.Click += lblScore_Click;
             // 
             // FrmGame
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Font;
             BackColor = System.Drawing.Color.Black;
-            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new System.Drawing.Size(1237, 644);
+            Controls.Add(label1);
             Controls.Add(fret0);
             Controls.Add(panBg);
             Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             Name = "FrmGame";
             Text = "Play Song";
-            WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;
             FormClosing += FrmMain_FormClosing;
             Load += FrmMain_Load;
             KeyDown += FrmMain_KeyDown;
@@ -157,5 +176,6 @@
         private System.Windows.Forms.PictureBox fret0;
         private System.Windows.Forms.Panel panBg;
         private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.Label label1;
     }
 }
