@@ -37,6 +37,7 @@ namespace HeroKeyboardGuitar
             btn_SelectSongFile = new Button();
             btn_SelectGenre = new Button();
             btn_createSong = new Button();
+            seedBox1 = new TextBox();
             SuspendLayout();
             // 
             // btn_selectMap
@@ -118,10 +119,25 @@ namespace HeroKeyboardGuitar
             btn_createSong.UseVisualStyleBackColor = false;
             btn_createSong.Click += btn_CreateSongClicked;
             // 
+            // seedBox1
+            // 
+            seedBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            seedBox1.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+            seedBox1.Location = new Point(435, 4);
+            seedBox1.Multiline = true;
+            seedBox1.Name = "seedBox1";
+            seedBox1.Size = new Size(630, 135);
+            seedBox1.TabIndex = 7;
+            seedBox1.Text = "Enter a seed";
+            seedBox1.TextAlign = HorizontalAlignment.Center;
+            seedBox1.MouseClick += seedBox1_MouseClick;
+            seedBox1.KeyPress += seedBox_inputfilter;
+            // 
             // ScrManager_Add
             // 
             BackgroundImage = Properties.Resources.song_manager;
             BackgroundImageLayout = ImageLayout.Stretch;
+            Controls.Add(seedBox1);
             Controls.Add(btn_selectMap);
             Controls.Add(btn_SelectSongFile);
             Controls.Add(btn_createSong);
@@ -132,6 +148,7 @@ namespace HeroKeyboardGuitar
             Size = new Size(1405, 885);
             Load += ScrManager_Add_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -140,5 +157,6 @@ namespace HeroKeyboardGuitar
         private System.Windows.Forms.Button btn_SelectSongFile;
         private Button btn_SelectGenre;
         private Button btn_createSong;
+        private TextBox seedBox1;
     }
 }

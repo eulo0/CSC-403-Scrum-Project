@@ -12,7 +12,7 @@ internal partial class FrmGame : Form
 {
     private List<Note> notes;
     private const float noteSpeed = 0.5f;
-    //private PictureBox[4] picTargets;
+    private PictureBox[] picTargets;
     private Audio curSong;
     private Score score;
 
@@ -35,15 +35,23 @@ internal partial class FrmGame : Form
     public void FrmMain_Load(object sender, EventArgs e)
     {
         score = new();
+        notes = new();
         lblScore.Text = score.Amount.ToString();
         panBg.BackgroundImage = Game.GetInstance().GetBg();
         panBg.Height = (int)(Height * 0.8);
         curSong = Game.GetInstance().CurSong;
-        notes = new();
+        picTargets = new PictureBox[] { fret0, fret1, fret2, fret3 };
+        /*
+        picTargets = new PictureBox[4];
+        picTargets[0] = fret0;
+        picTargets[1] = fret1;
+        picTargets[2] = fret2;
+        picTargets[3] = fret3;
+        */
         foreach (var actionTime in curSong.ActionTimes)
         {
-            double x = actionTime * noteSpeed + fret1.Left + fret1.Width;
-            notes.Add(new Note(x));
+            double x = actionTime.Item1 * noteSpeed + fret0.Left + fret0.Width;
+            notes.Add(new Note(x, actionTime.Item2));
         }
         Timer tmrWaitThenPlay = new()
         {
@@ -67,11 +75,14 @@ internal partial class FrmGame : Form
             note.Move(tmrPlay.Interval * (noteSpeed * 1.3));
             if (note.isPicNull() && note.getXPos() <= 2000)
             {
-                note.setPic(createMarkerPic());
+                note.setPic(createMarkerPic(note.fretNum));
             }
-            if (note.CheckMiss(fret1))
+            else 
             {
-                score.Miss();
+                if (note.CheckMiss(picTargets[note.fretNum]))
+                {
+                    score.Miss();
+                }
             }
         }
         if (index >= curSong.GetNumberOfSamples() - 1)
@@ -89,7 +100,7 @@ internal partial class FrmGame : Form
         {
             foreach (var note in notes)
             {
-                if (note.CheckHit(fret1))
+                if (note.CheckHit(picTargets[note.fretNum]))
                 {
                     score.Add(1);
                     lblScore.Text = score.Amount.ToString();
@@ -103,13 +114,13 @@ internal partial class FrmGame : Form
     private void FrmMain_KeyDown(object sender, KeyEventArgs e)
     {
 
-        fret1.BackgroundImage = Resources.pressed;
+        fret0.BackgroundImage = Resources.pressed;
 
     }
 
     private void FrmMain_KeyUp(object sender, KeyEventArgs e)
     {
-        fret1.BackgroundImage = Resources._default;
+        fret0.BackgroundImage = Resources._default;
     }
 
     private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -125,7 +136,7 @@ internal partial class FrmGame : Form
         }
     }
 
-    private PictureBox createMarkerPic()
+    private PictureBox createMarkerPic(int FretIndex)
     {
         const int noteSize = 50;
         PictureBox picNote = new()
@@ -135,7 +146,7 @@ internal partial class FrmGame : Form
             Width = noteSize,
             Height = noteSize,
             Left = -100,
-            Top = fret1.Top + fret1.Height / 2 - noteSize / 2,
+            Top = picTargets[FretIndex].Top + picTargets[FretIndex].Height / 2 - noteSize / 2,
             BackgroundImage = Resources.marker,
             BackgroundImageLayout = ImageLayout.Stretch,
             Anchor = AnchorStyles.Bottom,
@@ -151,6 +162,11 @@ internal partial class FrmGame : Form
     }
 
     private void pictureBox3_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void panBg_Paint(object sender, PaintEventArgs e)
     {
 
     }

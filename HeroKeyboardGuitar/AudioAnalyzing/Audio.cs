@@ -25,7 +25,7 @@ public class Audio {
     /// The times at which the music hits a peak. Useful for generating points
     /// were the player must hit a key to the beat
     /// </summary>
-    public List<double> ActionTimes { get; private set; }
+    public List<Tuple<double,int>> ActionTimes { get; private set; }
 
     /// <summary>
     /// The song's total duration in milliseconds
@@ -89,12 +89,12 @@ public class Audio {
     private void setActionTimes()
     {
         string jsonText = File.ReadAllText(beatMap);
-        ActionTimes = JsonSerializer.Deserialize<List<Double>>(jsonText);
-        MessageBox.Show(jsonText);
+        ActionTimes = JsonSerializer.Deserialize<List<Tuple<double,int>>>(jsonText);
     }
 
-    public List<Double> createActionTimesFromsongFile()
+    public List<Double> getbeatTimesFromsongFile()
     {
+        List<Double> beatTimes = new();
         List<double> clusters = new();
         List<double> curCluster = new();
         double THRES = 0.4;
@@ -131,7 +131,7 @@ public class Audio {
                         inCluster = false;
                         int actionIndex = clusterStart + curCluster.IndexOf(curCluster.Max());
                         double actionTime = (actionIndex / (double)samples.Length) * AudioLengthInMs;
-                        ActionTimes.Add(actionTime);
+                        beatTimes.Add(actionTime);
                         clusters.Add(0.0);
                         curCluster.Add(0.0);
                     }
@@ -149,7 +149,7 @@ public class Audio {
                 }
             }
         }
-        return ActionTimes;
+        return beatTimes;
     }
 
     /// <summary>

@@ -40,13 +40,16 @@ public class Note {
 
     private double xPos;
 
+    public int fretNum { get; set; }
+
     /// <summary>
     /// Ctor. Sets state to traveling
     /// </summary>
     /// <param name="xPos">Starting x position</param>
-    public Note(double xPos) {
+    public Note(double xPos, int index) {
         State = NoteState.TRAVELING;
         this.xPos = xPos;
+        this.fretNum = index;
     }
 
     /// <summary>
@@ -110,8 +113,11 @@ public class Note {
     /// <param name="picTarget">PictureBox object for player's target zone</param>
     /// <returns>True if note was just missed, false if it wasn't missed or was already previously missed</returns>
     public bool CheckMiss(PictureBox picTarget) {
-        /*
-        if (!isPicNull() && Pic.Left < picTarget.Left && State == NoteState.TRAVELING) 
+        if (isPicNull())
+        {
+            return false;
+        }
+        if (Pic.Left < picTarget.Left && State == NoteState.TRAVELING) 
         {
             Pic.BackgroundImage = Resources.marker_miss;
             State = NoteState.MISS;
@@ -119,8 +125,7 @@ public class Note {
         }
         else 
         {
-        */
             return false;
-        //};
+        };
     }
 }
