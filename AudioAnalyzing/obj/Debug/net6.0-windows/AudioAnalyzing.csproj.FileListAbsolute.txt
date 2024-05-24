@@ -1,0 +1,15 @@
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\bin\Debug\net6.0-windows\AudioAnalyzing.deps.json
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\bin\Debug\net6.0-windows\AudioAnalyzing.dll
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\bin\Debug\net6.0-windows\AudioAnalyzing.pdb
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\bin\Debug\net6.0-windows\AudioAnalyzing.xml
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.csproj.AssemblyReference.cache
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.AssemblyInfoInputs.cache
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.AssemblyInfo.cs
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.csproj.CoreCompileInputs.cache
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.sourcelink.json
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.dll
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\refint\AudioAnalyzing.dll
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.xml
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\AudioAnalyzing.pdb
+C:\Users\forge\Source\Repos\Scr1bler\HeroKeyboardGuitarPC\AudioAnalyzing\obj\Debug\net6.0-windows\ref\AudioAnalyzing.dll

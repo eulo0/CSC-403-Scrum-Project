@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AudioAnalyzing</name>
+    </assembly>
+    <members>
+        <member name="T:AudioAnalyzing.Audio">
+            <summary>
+            Basic class for analyzing an audio file. Stores samples and 
+            does cluster analysis.
+            </summary>
+        </member>
+        <member name="P:AudioAnalyzing.Audio.ActionTimes">
+            <summary>
+            The times at which the music hits a peak. Useful for generating points
+            were the player must hit a key to the beat
+            </summary>
+        </member>
+        <member name="P:AudioAnalyzing.Audio.AudioLengthInMs">
+            <summary>
+            The song's total duration in milliseconds
+            </summary>
+        </member>
+        <member name="P:AudioAnalyzing.Audio.StreamLengthInBytes">
+            <summary>
+            Total number of bytes 
+            </summary>
+        </member>
+        <member name="M:AudioAnalyzing.Audio.#ctor(System.String)">
+            <summary>
+            Takes in a file path and starts analysis right away.
+            Stores the results of that analysis
+            </summary>
+            <param name="filePath">Full absolute path to the .wav file</param>
+        </member>
+        <member name="M:AudioAnalyzing.Audio.DebugFileWrite">
+            <summary>
+            Only used for debugging cluster analysis. Use these files in the Octave "reload.m" script
+            which is in the "Audio Analysis via Octave" folder
+            </summary>
+        </member>
+        <member name="M:AudioAnalyzing.Audio.GetPosition">
+            <summary>
+            Gets the index of the current sample being played
+            </summary>
+            <returns>Index/Position of the sample being played</returns>
+        </member>
+        <member name="M:AudioAnalyzing.Audio.GetNumberOfSamples">
+            <summary>
+            Retrieves the total number of samples for this song
+            </summary>
+            <returns>Total number of samples</returns>
+        </member>
+        <member name="M:AudioAnalyzing.Audio.Play">
+            <summary>
+            Start playing the audio
+            </summary>
+        </member>
+        <member name="M:AudioAnalyzing.Audio.Stop">
+            <summary>
+            Stop playing the audio
+            </summary>
+        </member>
+    </members>
+</doc>
