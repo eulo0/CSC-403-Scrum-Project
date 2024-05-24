@@ -1,4 +1,6 @@
-﻿namespace HeroKeyboardGuitar;
+﻿using System.Windows.Forms;
+
+namespace HeroKeyboardGuitar;
 
 /// <summary>
 /// Holds the current score and streak of the player
@@ -43,7 +45,20 @@ public class Score {
     /// <summary>
     /// Resets streak back to 0
     /// </summary>
-    public void Miss() {
+    public int misses = 0;
+    public void Miss()
+    {
+        misses += 1;
+        CheckFailure(misses);
         Streak = 0;
+    }
+
+    public void CheckFailure(int someint)
+    {
+        if (someint == 5)
+        {
+            FailScreen failScreen = new FailScreen();
+            failScreen.Show();
+        }
     }
 }

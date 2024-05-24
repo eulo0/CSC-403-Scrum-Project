@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Media;
 
 namespace HeroKeyboardGuitar;
 
@@ -69,10 +70,15 @@ internal partial class FrmGame : Form
             {
                 note.setPic(createMarkerPic());
             }
-            if (note.CheckMiss(fret1))
-            {
-                score.Miss();
-            }
+            if (!(note.isPicNull()))
+                if (note.CheckMiss(fret1))
+                {
+                    score.Miss();
+                }
+            //if (note.CheckMiss(fret1))
+            //{
+            //    score.Miss();
+            //}
         }
         if (index >= curSong.GetNumberOfSamples() - 1)
         {
@@ -150,7 +156,16 @@ internal partial class FrmGame : Form
     {
         WinScreen winScreen = new WinScreen();
         winScreen.Show();
+        
     }
+
+    //public SoundPlayer player;
+    //player = new Soundplayer();
+
+    //public void VictoryChime()
+    //{
+    //    SoundPlayer
+    //}
 
 
     private void panel1_Paint(object sender, PaintEventArgs e)
