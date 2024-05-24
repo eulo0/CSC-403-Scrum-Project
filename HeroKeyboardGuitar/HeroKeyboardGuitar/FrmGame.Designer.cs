@@ -29,13 +29,14 @@ namespace HeroKeyboardGuitar {
             components = new System.ComponentModel.Container();
             tmrPlay = new Timer(components);
             tmrScoreShrink = new Timer(components);
-            fret2 = new PictureBox();
-            fret1 = new PictureBox();
-            fret3 = new PictureBox();
-            fret0 = new PictureBox();
-            panBg = new Panel();
-            label1 = new Label();
-            lblScore = new Label();
+            tmrPlay = new System.Windows.Forms.Timer(components);
+            tmrScoreShrink = new System.Windows.Forms.Timer(components);
+            fret2 = new System.Windows.Forms.PictureBox();
+            fret1 = new System.Windows.Forms.PictureBox();
+            fret3 = new System.Windows.Forms.PictureBox();
+            fret0 = new System.Windows.Forms.PictureBox();
+            lblScore = new System.Windows.Forms.Label();
+            panBg = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)fret2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fret1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fret3).BeginInit();
@@ -55,10 +56,7 @@ namespace HeroKeyboardGuitar {
             // 
             // fret2
             // 
-            fret2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            fret2.BackgroundImage = Properties.Resources._default;
-            fret2.BackgroundImageLayout = ImageLayout.Stretch;
-            fret2.Location = new System.Drawing.Point(204, 129);
+
             fret2.Name = "fret2";
             fret2.Size = new System.Drawing.Size(120, 120);
             fret2.TabIndex = 7;
@@ -66,10 +64,7 @@ namespace HeroKeyboardGuitar {
             // 
             // fret1
             // 
-            fret1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            fret1.BackgroundImage = Properties.Resources._default;
-            fret1.BackgroundImageLayout = ImageLayout.Stretch;
-            fret1.Location = new System.Drawing.Point(204, 292);
+
             fret1.Name = "fret1";
             fret1.Size = new System.Drawing.Size(120, 120);
             fret1.TabIndex = 6;
@@ -77,10 +72,7 @@ namespace HeroKeyboardGuitar {
             // 
             // fret3
             // 
-            fret3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            fret3.BackgroundImage = Properties.Resources._default;
-            fret3.BackgroundImageLayout = ImageLayout.Stretch;
-            fret3.Location = new System.Drawing.Point(204, 0);
+
             fret3.Name = "fret3";
             fret3.Size = new System.Drawing.Size(120, 120);
             fret3.TabIndex = 8;
@@ -89,14 +81,12 @@ namespace HeroKeyboardGuitar {
             // 
             // fret0
             // 
-            fret0.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            fret0.BackgroundImage = Properties.Resources._default;
-            fret0.BackgroundImageLayout = ImageLayout.Stretch;
-            fret0.Location = new System.Drawing.Point(204, 512);
+
             fret0.Name = "fret0";
             fret0.Size = new System.Drawing.Size(120, 120);
             fret0.TabIndex = 3;
             fret0.TabStop = false;
+
             // 
             // panBg
             // 
@@ -111,6 +101,7 @@ namespace HeroKeyboardGuitar {
             panBg.Size = new System.Drawing.Size(1237, 480);
             panBg.TabIndex = 6;
             panBg.Paint += panBg_Paint;
+
             // 
             // label1
             // 
@@ -132,13 +123,24 @@ namespace HeroKeyboardGuitar {
             lblScore.Dock = DockStyle.Bottom;
             lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             lblScore.ForeColor = System.Drawing.Color.White;
-            lblScore.Location = new System.Drawing.Point(0, 391);
+            lblScore.Location = new System.Drawing.Point(0, 361);
             lblScore.Name = "lblScore";
-            lblScore.Size = new System.Drawing.Size(1237, 89);
+            lblScore.Size = new System.Drawing.Size(1237, 90);
             lblScore.TabIndex = 5;
             lblScore.Text = "0";
             lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             lblScore.Click += lblScore_Click;
+            // 
+            // panBg
+            // 
+            panBg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            panBg.Controls.Add(lblScore);
+            panBg.Dock = System.Windows.Forms.DockStyle.Top;
+            panBg.Location = new System.Drawing.Point(0, 0);
+            panBg.Name = "panBg";
+            panBg.Size = new System.Drawing.Size(1237, 451);
+            panBg.TabIndex = 6;
+            panBg.Paint += panBg_Paint;
             // 
             // FrmGame
             // 
@@ -147,9 +149,13 @@ namespace HeroKeyboardGuitar {
             BackColor = System.Drawing.Color.Black;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new System.Drawing.Size(1237, 644);
+
             Controls.Add(label1);
+
             Controls.Add(fret0);
             Controls.Add(panBg);
+            Controls.Add(fret2);
+            Controls.Add(fret1);
             Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             Name = "FrmGame";
             Text = "Play Song";
@@ -174,8 +180,8 @@ namespace HeroKeyboardGuitar {
         private System.Windows.Forms.PictureBox fret1;
         private System.Windows.Forms.PictureBox fret3;
         private System.Windows.Forms.PictureBox fret0;
-        private System.Windows.Forms.Panel panBg;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panBg;
     }
 }

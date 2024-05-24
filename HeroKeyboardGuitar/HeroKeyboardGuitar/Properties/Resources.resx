@@ -127,14 +127,62 @@
   <data name="country" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\country.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="default_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\default_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="default_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\default_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="default_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\default_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="default_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\default_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="marker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\marker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_blue_hit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_blue_hit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_blue_miss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_blue_miss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_green_hit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_green_hit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_green_miss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_green_miss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="marker_hit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\marker hit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="marker_miss" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\marker miss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_red_hit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_red_hit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_red_miss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_red_miss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_yellow_hit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_yellow_hit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marker_yellow_miss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marker_yellow_miss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="metal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\metal.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -144,6 +192,18 @@
   </data>
   <data name="pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pressed_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pressed_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pressed_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pressed_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pressed_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pressed_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pressed_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pressed_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rnb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rnb.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -156,9 +216,6 @@
   </data>
   <data name="title" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\title.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="x_mark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\x_mark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_default" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

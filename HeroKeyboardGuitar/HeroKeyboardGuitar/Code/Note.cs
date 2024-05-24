@@ -65,9 +65,9 @@ public class Note {
     /// </summary>
     /// <param name="amount">Amount to move to the left</param>
     public void Move(double amount) {
-        xPos -= amount;
+        xPos += amount;
         if (!isPicNull()){
-            Pic.Left = (int)xPos;
+            Pic.Top = (int)xPos;
         }
     }
 
@@ -92,19 +92,20 @@ public class Note {
     /// </summary>
     /// <param name="picTarget">PictureBox object for player's target zone</param>
     /// <returns>True if note was just hit, false if it wasn't hit or was already previously hit</returns>
-    public bool CheckHit(PictureBox picTarget) 
+    public bool CheckHit(PictureBox picTarget)
     {
-        if (!isPicNull() && Pic.Left < picTarget.Left + picTarget.Width && Pic.Left + Pic.Width > picTarget.Left && State == NoteState.TRAVELING) 
+        if (!isPicNull() && Pic.Bottom > picTarget.Top && Pic.Top < picTarget.Bottom && Pic.Left < picTarget.Right && Pic.Right > picTarget.Left && State == NoteState.TRAVELING)
         {
             Pic.BackgroundImage = Resources.marker_hit;
             State = NoteState.HIT;
             return true;
         }
-        else 
+        else
         {
             return false;
         }
     }
+
 
     /// <summary>
     /// Checks if the player has missed this note. If so, the note will be marked as missed and
@@ -117,7 +118,7 @@ public class Note {
         {
             return false;
         }
-        if (Pic.Left < picTarget.Left && State == NoteState.TRAVELING) 
+        if (Pic.Top > picTarget.Top && State == NoteState.TRAVELING) 
         {
             Pic.BackgroundImage = Resources.marker_miss;
             State = NoteState.MISS;
