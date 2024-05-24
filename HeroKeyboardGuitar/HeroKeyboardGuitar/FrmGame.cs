@@ -81,6 +81,7 @@ internal partial class FrmGame : Form
             {
                 Controls.Remove(note.Pic);
             }
+            win();
         }
     }
 
@@ -144,6 +145,13 @@ internal partial class FrmGame : Form
         picNote.BringToFront();
         return picNote;
     }
+
+    public void win()
+    {
+        WinScreen winScreen = new WinScreen();
+        winScreen.Show();
+    }
+
 
     private void panel1_Paint(object sender, PaintEventArgs e)
     {
