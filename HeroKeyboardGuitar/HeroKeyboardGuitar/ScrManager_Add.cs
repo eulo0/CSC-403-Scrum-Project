@@ -7,16 +7,20 @@ using System.Text.Json;
 using ScottPlot;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Diagnostics.Eventing.Reader;
+using System.Linq.Expressions;
 
 namespace HeroKeyboardGuitar;
 
-internal partial class ScrManager_Add : UserControl{
-
+internal partial class ScrManager_Add : UserControl
+{
+    int seed;
     private const int MAX_SONG_AMOUNT = 10;
     private string SONGS_ROOT_PATH = $"{Application.StartupPath}../../../Songs/";
     private GenreType[] genreArray;
     private int currentGenreIndex;
     public ScreenSwapHandler handler;
+    private int seedBox;
     private string audioPath;
     private string songGenre;
     private string beatPath;
@@ -27,8 +31,6 @@ internal partial class ScrManager_Add : UserControl{
     /// </summary>
     public ScrManager_Add()
     {
-        genreArray = (GenreType[])Enum.GetValues(typeof(GenreType));
-        currentGenreIndex = -1;
         InitializeComponent();
     }
 
@@ -39,9 +41,34 @@ internal partial class ScrManager_Add : UserControl{
     /// <param name="e"></param>
     private void ScrManager_Add_Load(object sender, EventArgs e)
     {
+        seed = 0;
+        genreArray = (GenreType[])Enum.GetValues(typeof(GenreType));
+        currentGenreIndex = -1;
         audioPath = "";
         songGenre = "";
         beatPath = "";
+    }
+
+    private void seedBox1_MouseClick(object sender, MouseEventArgs e)
+    {
+        seedBox1.Text = "";
+        //seed = 0;
+    }
+    private void seedBox_inputfilter(object sender, KeyPressEventArgs e)
+    {
+        if (seedBox1.Text.Length >= 10 && !(e.KeyChar == (char)8))
+        {
+            e.Handled = true;
+        }
+        else if (!(char.IsDigit(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void btn_SelectSongFileClicked(object sender, EventArgs e)
+    {
+        setFileandUpdateButton(ref audioPath, ".wav", btn_SelectSongFile);
     }
 
     /// <summary>
@@ -53,17 +80,6 @@ internal partial class ScrManager_Add : UserControl{
     {
         handler.gotoTitle();
         handler.goUpdate_SongManage();
-    }
-
-    /// <summary>
-    /// sets the field for audio path to the file opened by the user and updates
-    /// the button to show the file picked
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void btn_SelectSongFileClicked(object sender, EventArgs e)
-    {
-        setFileandUpdateButton(ref audioPath, ".wav", btn_SelectSongFile);
     }
 
     /// <summary>
@@ -107,67 +123,72 @@ internal partial class ScrManager_Add : UserControl{
     {
         if (isPathFull(SONGS_ROOT_PATH))
         {
-            MessageBox.Show($"Too many songs in the folder. Maximum amount is {MAX_SONG_AMOUNT}. Try deleting a song folder" + 
+            MessageBox.Show($"Too many songs in the folder. Maximum amount is {MAX_SONG_AMOUNT}. Try deleting a song folder" +
                            "from the Delete button in Manage Songs and then come back.",
                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
 
+        try { seed = int.Parse(seedBox1.Text); }
+        catch { seed = 0; }
+      
         bool validSongFile = Path.GetExtension(audioPath) == ".wav";
         bool validGenre = songGenre != "";
         bool validBeatMap = Path.GetExtension(beatPath) == ".txt";
-            if (validSongFile && validGenre)
+        if (validSongFile && validGenre)
+        {
+            DialogResult confirmation = MessageBox.Show("Any songs that share the same name and genre will be overwritten. Do you want to " +
+            "proceed?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (confirmation == DialogResult.Yes)
             {
-                DialogResult confirmation = MessageBox.Show("Any songs that share the same name and genre will be overwritten. Do you want to " +
-                "proceed?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (confirmation == DialogResult.Yes)
+                string songName = Path.GetFileNameWithoutExtension(audioPath);
+                string folderName = $"{songName}_{songGenre.ToLower()}";
+                string newFolderPath = Path.Combine(SONGS_ROOT_PATH, folderName);
+                System.IO.Directory.CreateDirectory(newFolderPath);
+                string songCopiedFile = Path.Combine(newFolderPath, "audio.wav");
+                File.Copy(audioPath, songCopiedFile, true);
+                if (validBeatMap)
                 {
-                    string songName = Path.GetFileNameWithoutExtension(audioPath);
-                    string folderName = $"{songName}_{songGenre.ToLower()}";
-                    string newFolderPath = Path.Combine(SONGS_ROOT_PATH, folderName);
-                    System.IO.Directory.CreateDirectory(newFolderPath);
-                    string songCopiedFile = Path.Combine(newFolderPath, "audio.wav");
-                    if (validBeatMap)
-                    {
-                        createJSON_mapFromText(beatPath, newFolderPath);
-                    }
-                    else
-                    {
+                    createJSON_mapFromText(beatPath, newFolderPath);
+                }
+                else
+                {
                     DialogResult errorHandling = MessageBox.Show("The beat map is invalid. Would you like use an autogenerated beat map instead?",
                                                                 "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                        if (errorHandling == DialogResult.Yes) { 
-                            createJSON_mapFromAudio(newFolderPath); 
-                        }
-
-                        else { 
-                            File.Delete(newFolderPath); 
-                            return; 
-                        }
+                    if (errorHandling == DialogResult.Yes)
+                    {
+                        createJSON_mapFromAudio(newFolderPath);
                     }
-                    File.Copy(audioPath, songCopiedFile, true);
-                    MessageBox.Show("Song Succesfully Added!");
-                }
 
+                    else
+                    {
+                        File.Delete(newFolderPath);
+                        return;
+                    }
+                }
+                MessageBox.Show("Song Succesfully Added!");
             }
-            else
-            {
-                string message = "";
-                Dictionary<string, bool> fieldsMap = new()
+
+        }
+        else
+        {
+            string message = "";
+            Dictionary<string, bool> fieldsMap = new()
                 {
                     { "Song", validSongFile },
                     { "Genre", validGenre},
                     { "Beat Map", validBeatMap }
                 };
-                foreach (KeyValuePair<string, bool> pair in fieldsMap)
+            foreach (KeyValuePair<string, bool> pair in fieldsMap)
+            {
+                if (!pair.Value)
                 {
-                    if (!pair.Value)
-                    {
-                        message += $"{pair.Key} is not the right file type.\n";
-                    }
+                    message += $"{pair.Key} is not the right file type.\n";
                 }
-                message += "Refer to the bottom (parantheses section) for the accepted file type(s)";
-                MessageBox.Show(message);
             }
+            message += "Refer to the bottom (parantheses section) for the accepted file type(s)";
+            MessageBox.Show(message);
+        }
     }
 
     /// <summary>
@@ -196,10 +217,16 @@ internal partial class ScrManager_Add : UserControl{
     /// <param name="directory"></param>
     private void createJSON_mapFromAudio(string directoryPath)
     {
+        var genSeed = new Random(seed);
+        List<Tuple<double, int>> beatTimeList = new();
         Audio song = new Audio(directoryPath);
-        List<double> beatTimeList = song.createActionTimesFromsongFile();
+        List<double> actionTimesfromAudio = song.getbeatTimesFromsongFile();
+        foreach (double actionTime in actionTimesfromAudio) {
+            int randint = genSeed.Next(0,3);
+            beatTimeList.Add(Tuple.Create(actionTime, randint));
+        }
         string fullFilePath = Path.Combine(directoryPath, "beat.json");
-        using (File.Create(directoryPath));
+        using (File.Create(directoryPath)) ;
         string jsonString = JsonSerializer.Serialize(beatTimeList);
         File.WriteAllText(fullFilePath, jsonString);
     }
@@ -212,7 +239,8 @@ internal partial class ScrManager_Add : UserControl{
     /// <param name="directory"></param>
     private void createJSON_mapFromText(string textFile, string directory)
     {
-        List<Double> beatTimeList = new();
+        var genSeed = new Random(seed);
+        List<Tuple<double, int>> beatTimeList = new();
         string[] lines = File.ReadAllLines(textFile);
         string fullFilePath = Path.Combine(directory, "beat.json");
         using (File.Create(fullFilePath));
@@ -220,21 +248,21 @@ internal partial class ScrManager_Add : UserControl{
         {
             string[] parts = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
             string startTime = parts[0];
+            int fretNumber = genSeed.Next(0, 3);
             try
             {
-                beatTimeList.Add(Double.Parse(startTime) * 1000);
+                double ActionTime = Double.Parse(startTime) * 1000;
+                Tuple<double, int> timeandFret = Tuple.Create(ActionTime, fretNumber);
+                if (!beatTimeList.Contains(timeandFret))
+                {
+                    beatTimeList.Add(timeandFret);
+                }
             }
             catch
             {
                 MessageBox.Show("The file selected is not in the appropiate format. Are you sure it's exported from Audacity?");
             }
         }
-        /*
-        Dictionary<String, List<Double>> actionTimes = new()
-        {
-            { "Action Times", beatTimeList }
-        };
-        */
         string jsonString = JsonSerializer.Serialize(beatTimeList);
         File.WriteAllText(fullFilePath, jsonString);
     }
