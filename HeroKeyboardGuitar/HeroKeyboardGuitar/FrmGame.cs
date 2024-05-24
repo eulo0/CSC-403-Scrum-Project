@@ -164,6 +164,7 @@ internal partial class FrmGame : Form
 
     public void win()
     {
+        this.Close();
         WinScreen winScreen = new WinScreen();
         winScreen.Show();
 
