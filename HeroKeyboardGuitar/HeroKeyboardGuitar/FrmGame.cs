@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Media;
 
 namespace HeroKeyboardGuitar;
 
@@ -45,6 +46,9 @@ internal partial class FrmGame : Form
         score = new();
         notes = new();
         lblScore.Text = score.Amount.ToString();
+        label1.Text = score.misses.ToString();
+        panBg.BackgroundImage = Game.GetInstance().GetBg();
+
         panBg.Height = (int)(Height * 0.8);
         curSong = Game.GetInstance().CurSong;
         picTargets = new PictureBox[] { fret0, fret1, fret2, fret3 };
@@ -122,7 +126,10 @@ internal partial class FrmGame : Form
             {
                 if (note.CheckMiss(picTargets[note.fretNum]))
                 {
-                    score.Miss();
+                    //score.Miss();
+                    if (score.Miss() == true)
+                        this.Close();
+                    label1.Text = score.misses.ToString();
                 }
             }
         }
@@ -215,8 +222,23 @@ internal partial class FrmGame : Form
 
     public void win()
     {
+        this.Close();
         WinScreen winScreen = new WinScreen();
         winScreen.Show();
+
+    }
+
+    //public SoundPlayer player;
+    //player = new Soundplayer();
+
+    //public void VictoryChime()
+    //{
+    //    SoundPlayer
+    //}
+
+    public void CloseFrm()
+    {
+        this.Close();
     }
 
 
@@ -236,7 +258,6 @@ internal partial class FrmGame : Form
 
     }
 
-    private void fret0_Click(object sender, EventArgs e)
     {
 
     }

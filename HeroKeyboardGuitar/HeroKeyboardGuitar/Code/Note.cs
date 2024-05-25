@@ -124,7 +124,7 @@ public class Note {
             State = NoteState.MISS;
             return true;
         }
-        else 
+        else
         {
             return false;
         };
